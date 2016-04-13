@@ -1,0 +1,21 @@
+FROM ruby:2.3-slim
+
+ENV BUNDLE_PATH ./vendor/bundle
+ENV HOME /home/app
+WORKDIR $HOME
+
+RUN groupadd -r app && useradd -r -g app app
+
+RUN \
+  apt-get update \
+  && apt-get install -y --no-install-recommends \
+    build-essential \
+    nodejs \
+    libpq-dev \
+  && apt-get clean
+
+USER app
+
+ADD Gemfile* $HOME/
+
+CMD ["bundle", "install"]
