@@ -2,6 +2,7 @@ FROM ruby:2.3-slim
 
 ENV BUNDLE_PATH ./vendor/bundle
 ENV HOME /home/app
+
 WORKDIR $HOME
 
 RUN groupadd -r app && useradd -r -g app app
@@ -18,8 +19,8 @@ USER app
 
 ADD . $HOME
 
-EXPOSE 3000
+EXPOSE 4000
 
 ENTRYPOINT ["bundle", "exec"]
 
-CMD ["rails", "server", "--binding", "0.0.0.0"]
+CMD ["rails", "server", "--binding", "0.0.0.0", "-p", "4000"]
