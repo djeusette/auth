@@ -16,3 +16,6 @@
 !/log/.keep
 /tmp
 .bash_history
+
+# Ignore vendor
+/vendor/bundle
